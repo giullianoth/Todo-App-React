@@ -17,6 +17,18 @@
     color: var(--color-bright-blue);
 }
 
+.filter.light {
+    background-color: var(--color-white);
+}
+
+.filter.light button {
+    color: var(--color-dark-grayish-blue);
+}
+
+.filter.light button.active {
+    color: var(--color-bright-blue);
+}
+
 @media screen and (min-width: 576px) {
     .filter {
         width: fit-content;
@@ -31,5 +43,9 @@
 
     .filter button {
         font-size: 1em;
+    }
+
+    .filter.light {
+        background: none
     }
 }

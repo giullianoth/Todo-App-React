@@ -7,3 +7,12 @@
   min-height: 100vh;
   transition: var(--transition);
 }
+
+.app.light {
+    background-color: var(--color-white);
+    color: var(--color-very-dark-grayish-blue);
+}
+
+.app.light button:hover {
+  color: var(--color-very-dark-grayish-blue-3);
+}

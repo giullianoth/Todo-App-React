@@ -1,10 +1,14 @@
 import styles from "./TaskForm.module.css"
 import iconCheck from "../../../assets/images/icon-check.svg"
 
-const TaskForm = () => {
+
+export interface TaskFormProps {
+  lightTheme: boolean
+}
+const TaskForm = (props: TaskFormProps) => {
   return (
     <form autoComplete="off" className={styles.taskForm}>
-            <label className="complete">
+            <label className={`complete${props.lightTheme ? " light" : ""}`}>
                 <input
                     type="checkbox"
                     name="new-complete"

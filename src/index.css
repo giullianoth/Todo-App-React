@@ -86,16 +86,6 @@ button:hover {
   overflow: hidden;
 }
 
-.complete.light input {
-  border-color: var(--color-light-grayish-blue);
-}
-
-.complete.light:hover input {
-  background-image:
-    linear-gradient(45deg, var(--color-white), var(--color-white)),
-    linear-gradient(45deg, var(--color-check-background));
-}
-
 .complete:hover input {
   border-color: transparent;
   border-style: double;
@@ -132,4 +122,14 @@ button:hover {
   inset: auto;
   opacity: 0;
   transition: var(--transition);
+}
+
+.complete.light input {
+  border-color: var(--color-light-grayish-blue);
+}
+
+.complete.light:hover input {
+  background-image:
+    linear-gradient(45deg, var(--color-white), var(--color-white)),
+    linear-gradient(45deg, var(--color-check-background));
 }

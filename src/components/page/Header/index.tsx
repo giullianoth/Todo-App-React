@@ -3,7 +3,12 @@ import styles from "./Header.module.css"
 import iconSun from "../../../assets/images/icon-sun.svg"
 import iconMoon from "../../../assets/images/icon-moon.svg"
 
-const Header = () => {
+export interface HeaderProps {
+    lightTheme: boolean
+    changeTheme: Function
+  }
+  
+const Header = (props: HeaderProps) => {
     return (
         <header className={styles.header}>
             <Container className={styles.header__container}>
@@ -12,8 +17,10 @@ const Header = () => {
                 </div>
 
                 <div
-                className={styles.header__switchTheme}>
-                    <img src={iconSun} alt="Switch theme" />
+                className={styles.header__switchTheme}
+                title={`Ckange to ${props.lightTheme ? "dark" : "light"} theme`}
+                onClick={() => props.changeTheme()}>
+                    <img src={props.lightTheme ? iconMoon : iconSun} alt="Switch theme" />
                 </div>
             </Container>
         </header>

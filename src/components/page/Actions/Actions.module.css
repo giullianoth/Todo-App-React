@@ -19,3 +19,12 @@
 .actions__clear {
     font-weight: 400;
 }
+
+.actions.light {
+    background-color: var(--color-white);
+    color: var(--color-dark-grayish-blue);
+}
+
+.actions.light .actions__count, .actions.light .actions__clear {
+    color: var(--color-dark-grayish-blue);
+}

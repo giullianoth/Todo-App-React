@@ -18,3 +18,24 @@
     z-index: 2;
     transition: var(--transition);
 }
+
+.tasks__empty {
+    text-align: center;
+    padding: 20px;
+    color: var(--color-very-dark-grayish-blue-2);
+}
+
+.tasks__dragndrop {
+    padding-block: 10px 40px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-very-dark-grayish-blue-2);
+}
+
+.tasks.light {
+    background-color: var(--color-white);
+}
+
+.tasks__form.light {
+    background-color: var(--color-white);
+}

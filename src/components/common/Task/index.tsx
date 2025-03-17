@@ -5,14 +5,17 @@ import iconCross from "../../../assets/images/icon-cross.svg"
 
 export interface TaskProps {
     task: TaskFields
+    lightTheme: boolean
 }
 
 const Task = (props: TaskProps) => {
     return (
-        <li className={styles.task + (props.task.completed ? ` ${styles.completed}` : "")}>
+        <li className={styles.task
+            + (props.task.completed ? ` ${styles.completed}` : "")
+            + (props.lightTheme ? ` ${styles.light}` : "")}>
             <div className={styles.task__container}>
                 <label
-                    className="complete"
+                    className={`complete${props.lightTheme ? " light" : ""}`}
                     title={props.task.completed ? "Set as non-complete" : "Complete this task"}>
                     <input
                         type="checkbox"

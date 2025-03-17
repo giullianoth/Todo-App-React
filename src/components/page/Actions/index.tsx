@@ -1,8 +1,12 @@
 import styles from "./Actions.module.css"
 
-const Actions = () => {
+export interface ActionsProps {
+  lightTheme: boolean
+}
+
+const Actions = (props: ActionsProps) => {
   return (
-    <section className={styles.actions }>
+    <section className={styles.actions + (props.lightTheme ? ` ${styles.light}` : "")}>
       <div className={styles.actions__count}>
         2 items left
       </div>

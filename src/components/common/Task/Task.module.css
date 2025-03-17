@@ -30,6 +30,15 @@
     border-bottom: 1px solid var(--color-light-grayish-blue-2);
 }
 
+.task.light {
+    background-color: var(--color-white);
+    border-color: var(--color-very-light-grayish-blue);
+}
+
+.task.light.completed .task__container:not(:has(form)) {
+    color: var(--color-light-grayish-blue);
+}
+
 @media screen and (min-width: 992px) {
     .task__delete {
         opacity: 0;

@@ -6,13 +6,17 @@ import Task from "../../common/Task"
 import Actions from "../Actions"
 import Filter from "../Filter"
 
+export interface TasksProps {
+  lightTheme: boolean
+}
+
 export interface TaskFields {
   id: number
   task: string,
   completed: boolean
 }
 
-const Tasks = () => {
+const Tasks = (props: TasksProps) => {
   const [tasks, setTasks] = useState<TaskFields[]>([
     {
       id: 1,
@@ -33,22 +37,23 @@ const Tasks = () => {
 
   return (
     <Container>
-      <section className={styles.tasks__form}>
-        <TaskForm />
+      <section className={styles.tasks__form + (props.lightTheme ? ` ${styles.light}` : "")}>
+        <TaskForm lightTheme={props.lightTheme} />
       </section>
 
-      <section className={styles.tasks}>
+      <section className={styles.tasks + (props.lightTheme ? ` ${styles.light}` : "")}>
         <ul className={styles.tasks__list}>
           {tasks.map(task => (
             <Task
               key={`task-${task.id}`}
-              task={task} />
+              task={task}
+              lightTheme={props.lightTheme} />
           ))}
         </ul>
       </section>
 
-      <Actions />
-      <Filter />
+      <Actions lightTheme={props.lightTheme} />
+      <Filter lightTheme={props.lightTheme} />
     </Container>
   )
 }
