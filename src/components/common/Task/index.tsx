@@ -7,6 +7,7 @@ export interface TaskProps {
     task: TaskFields
     lightTheme: boolean
     completeTask: Function
+    deleteTask: Function
 }
 
 const Task = (props: TaskProps) => {
@@ -29,7 +30,7 @@ const Task = (props: TaskProps) => {
 
                 <p className={styles.task__content}>{props.task.task}</p>
 
-                <button className={styles.task__delete} title="Delete this task">
+                <button className={styles.task__delete} title="Delete this task" onClick={() => props.deleteTask(props.task.id)}>
                     <img src={iconCross} alt="Delete" />
                 </button>
             </div>

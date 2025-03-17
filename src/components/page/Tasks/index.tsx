@@ -63,6 +63,11 @@ const Tasks = (props: TasksProps) => {
     setTasks(updatedTasks)
   }
 
+  const deleteTask = (taskId: number) => {
+    const sanitizedTasks = tasks.filter(task => task.id !== taskId)
+    setTasks(sanitizedTasks)
+  }
+
   return (
     <Container>
       <section className={styles.tasks__form + (props.lightTheme ? ` ${styles.light}` : "")}>
@@ -71,13 +76,16 @@ const Tasks = (props: TasksProps) => {
 
       <section className={styles.tasks + (props.lightTheme ? ` ${styles.light}` : "")}>
         <ul className={styles.tasks__list}>
-          {tasks.map(task => (
-            <Task
-              key={`task-${task.id}`}
-              task={task}
-              lightTheme={props.lightTheme}
-              completeTask={completeTask} />
-          ))}
+          {tasks.length
+            ? tasks.map(task => (
+              <Task
+                key={`task-${task.id}`}
+                task={task}
+                lightTheme={props.lightTheme}
+                completeTask={completeTask}
+                deleteTask={deleteTask} />
+            ))
+            : <li className={styles.tasks__empty}>Your todo will appear here</li>}
         </ul>
       </section>
 
