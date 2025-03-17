@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Container from "../../common/Container"
 import TaskForm from "../../common/TaskForm"
 import styles from "./Tasks.module.css"
@@ -33,7 +33,12 @@ const Tasks = (props: TasksProps) => {
       task: "10 minutes meditation",
       completed: false
     },
-  ])
+  ])  
+  const [tasksLeft, setTasksLeft] = useState(0)
+
+  useEffect(() => {
+    setTasksLeft(tasks.filter(task => !task.completed).length)
+  }, [])
 
   const createTask = (task: string, completed: boolean) => {
     if (!task) {
@@ -50,6 +55,7 @@ const Tasks = (props: TasksProps) => {
     ]
 
     setTasks(newTasks)
+    setTasksLeft(newTasks.filter(task => !task.completed).length)
   }
 
   const completeTask = (taskId: number) => {
@@ -61,11 +67,13 @@ const Tasks = (props: TasksProps) => {
     })
 
     setTasks(updatedTasks)
+    setTasksLeft(updatedTasks.filter(task => !task.completed).length)
   }
 
   const deleteTask = (taskId: number) => {
     const sanitizedTasks = tasks.filter(task => task.id !== taskId)
     setTasks(sanitizedTasks)
+    setTasksLeft(sanitizedTasks.filter(task => !task.completed).length)
   }
 
   return (
@@ -89,7 +97,7 @@ const Tasks = (props: TasksProps) => {
         </ul>
       </section>
 
-      <Actions lightTheme={props.lightTheme} />
+      <Actions lightTheme={props.lightTheme} tasksLeft={tasksLeft} />
       <Filter lightTheme={props.lightTheme} />
     </Container>
   )
