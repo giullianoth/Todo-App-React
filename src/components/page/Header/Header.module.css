@@ -1,0 +1,29 @@
+.header {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.header__container {
+    padding-block: 60px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__title h1 {
+    font-size: 1.4em;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+}
+
+.header__switchTheme {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1440px) {
+    .header__container {
+        padding-top: 120px;
+    }
+}
