@@ -4,6 +4,7 @@ import TaskForm from "../../common/TaskForm"
 import styles from "./Tasks.module.css"
 import Task from "../../common/Task"
 import Actions from "../Actions"
+import Filter from "../Filter"
 
 export interface TaskFields {
   id: number
@@ -47,6 +48,7 @@ const Tasks = () => {
       </section>
 
       <Actions />
+      <Filter />
     </Container>
   )
 }

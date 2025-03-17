@@ -1,0 +1,35 @@
+.filter {
+    padding: 20px;
+    background-color: var(--color-very-dark-desaturated-blue);
+    box-shadow: 0 0 10px var(--color-shadow);
+    margin-bottom: 60px;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.filter button.active {
+    color: var(--color-bright-blue);
+}
+
+@media screen and (min-width: 576px) {
+    .filter {
+        width: fit-content;
+        padding-inline: 0;
+        margin-inline: auto;
+        background: none;
+        margin-top: 0;
+        transform: translateY(-100%);
+        margin-bottom: 0;
+        box-shadow: none;
+    }
+
+    .filter button {
+        font-size: 1em;
+    }
+}
