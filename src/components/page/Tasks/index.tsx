@@ -35,10 +35,27 @@ const Tasks = (props: TasksProps) => {
     },
   ])
 
+  const createTask = (task: string, completed: boolean) => {
+    if (!task) {
+      return
+    }
+
+    const newTasks = [
+      ...tasks,
+      {
+        id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
+        task: task,
+        completed: completed
+      }
+    ]
+
+    setTasks(newTasks)
+  }
+
   return (
     <Container>
       <section className={styles.tasks__form + (props.lightTheme ? ` ${styles.light}` : "")}>
-        <TaskForm lightTheme={props.lightTheme} />
+        <TaskForm lightTheme={props.lightTheme} onSubmit={createTask} />
       </section>
 
       <section className={styles.tasks + (props.lightTheme ? ` ${styles.light}` : "")}>

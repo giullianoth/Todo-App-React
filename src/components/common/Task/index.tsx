@@ -20,8 +20,8 @@ const Task = (props: TaskProps) => {
                     <input
                         type="checkbox"
                         name="new-complete"
-                        id="new-complete"
-                        checked={props.task.completed} />
+                        checked={props.task.completed}
+                        onChange={() => {}} />
 
                     <img src={iconCheck} alt="Complete" />
                 </label>
