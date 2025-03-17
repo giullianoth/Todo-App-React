@@ -1,3 +1,13 @@
+.tasks {
+    background-color: var(--color-very-dark-desaturated-blue);
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 10px 10px var(--color-shadow);
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+}
+
 .tasks__form {
     margin-bottom: 20px;
     padding: 20px;

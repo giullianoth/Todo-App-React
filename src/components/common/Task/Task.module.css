@@ -1,0 +1,37 @@
+.task {
+    padding: 20px;
+    font-size: 0.7em;
+    border-bottom: 1px solid var(--color-very-dark-grayish-blue-3);
+    background-color: var(--color-very-dark-desaturated-blue);
+    transition: var(--transition);
+}
+
+.task:hover .task__delete {
+    opacity: 1;
+}
+
+.task.completed .task__container:not(:has(form)) {
+    color: var(--color-very-dark-grayish-blue-2);
+    text-decoration: line-through;
+}
+
+.task__container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task__content {
+    flex-grow: 1;
+    cursor: default;
+}
+
+.task input[type="text"] {
+    border-bottom: 1px solid var(--color-light-grayish-blue-2);
+}
+
+@media screen and (min-width: 992px) {
+    .task__delete {
+        opacity: 0;
+    }
+}
