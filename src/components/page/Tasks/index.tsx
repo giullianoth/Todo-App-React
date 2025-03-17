@@ -3,6 +3,7 @@ import Container from "../../common/Container"
 import TaskForm from "../../common/TaskForm"
 import styles from "./Tasks.module.css"
 import Task from "../../common/Task"
+import Actions from "../Actions"
 
 export interface TaskFields {
   id: number
@@ -44,6 +45,8 @@ const Tasks = () => {
           ))}
         </ul>
       </section>
+
+      <Actions />
     </Container>
   )
 }

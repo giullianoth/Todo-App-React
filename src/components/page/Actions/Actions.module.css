@@ -1,0 +1,21 @@
+.actions {
+    padding: 20px;
+    background-color: var(--color-very-dark-desaturated-blue);
+    box-shadow: 0 10px 10px var(--color-shadow);
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.actions__count {
+    font-size: 0.7em;
+    color: var(--color-very-dark-grayish-blue-2);
+}
+
+.actions__clear {
+    font-weight: 400;
+}

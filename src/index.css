@@ -65,6 +65,11 @@ button {
   cursor: pointer;
   transition: var(--transition);
 }
+
+button:hover {
+  color: var(--color-light-grayish-blue-hover);
+}
+
 #root {
   min-height: 100vh;
 }
