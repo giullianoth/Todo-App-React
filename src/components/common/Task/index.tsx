@@ -6,6 +6,7 @@ import iconCross from "../../../assets/images/icon-cross.svg"
 export interface TaskProps {
     task: TaskFields
     lightTheme: boolean
+    completeTask: Function
 }
 
 const Task = (props: TaskProps) => {
@@ -21,7 +22,7 @@ const Task = (props: TaskProps) => {
                         type="checkbox"
                         name="new-complete"
                         checked={props.task.completed}
-                        onChange={() => {}} />
+                        onChange={() => props.completeTask(props.task.id)} />
 
                     <img src={iconCheck} alt="Complete" />
                 </label>

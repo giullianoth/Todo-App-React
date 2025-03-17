@@ -52,6 +52,17 @@ const Tasks = (props: TasksProps) => {
     setTasks(newTasks)
   }
 
+  const completeTask = (taskId: number) => {
+    const updatedTasks = tasks.map(task => {
+      if (taskId === task.id) {
+        task.completed = !task.completed
+      }
+      return task
+    })
+
+    setTasks(updatedTasks)
+  }
+
   return (
     <Container>
       <section className={styles.tasks__form + (props.lightTheme ? ` ${styles.light}` : "")}>
@@ -64,7 +75,8 @@ const Tasks = (props: TasksProps) => {
             <Task
               key={`task-${task.id}`}
               task={task}
-              lightTheme={props.lightTheme} />
+              lightTheme={props.lightTheme}
+              completeTask={completeTask} />
           ))}
         </ul>
       </section>
