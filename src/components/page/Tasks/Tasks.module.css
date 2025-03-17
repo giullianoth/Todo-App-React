@@ -1,0 +1,10 @@
+.tasks__form {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--color-very-dark-desaturated-blue);
+    border-radius: 5px;
+    font-size: 0.8em;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+}
