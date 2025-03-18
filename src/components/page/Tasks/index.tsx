@@ -35,10 +35,16 @@ const Tasks = (props: TasksProps) => {
     },
   ])  
   const [tasksLeft, setTasksLeft] = useState(0)
+  const [filter, setFilter] = useState("all")
 
   useEffect(() => {
     setTasksLeft(tasks.filter(task => !task.completed).length)
   }, [])
+
+  const filteredTasks = () => tasks.filter(task =>
+    (filter === "all") ||
+    (filter === "active" && !task.completed) ||
+    (filter === "completed" && task.completed))
 
   const createTask = (task: string, completed: boolean) => {
     if (!task) {
@@ -82,6 +88,8 @@ const Tasks = (props: TasksProps) => {
     setTasksLeft(sanitizedTasks.filter(task => !task.completed).length)
   }
 
+  const filterTasks = (term: string) => setFilter(term)
+
   return (
     <Container>
       <section className={styles.tasks__form + (props.lightTheme ? ` ${styles.light}` : "")}>
@@ -90,8 +98,8 @@ const Tasks = (props: TasksProps) => {
 
       <section className={styles.tasks + (props.lightTheme ? ` ${styles.light}` : "")}>
         <ul className={styles.tasks__list}>
-          {tasks.length
-            ? tasks.map(task => (
+          {filteredTasks().length
+            ? filteredTasks().map(task => (
               <Task
                 key={`task-${task.id}`}
                 task={task}
@@ -104,7 +112,7 @@ const Tasks = (props: TasksProps) => {
       </section>
 
       <Actions lightTheme={props.lightTheme} tasksLeft={tasksLeft} clearCompleted={clearCompleted} />
-      <Filter lightTheme={props.lightTheme} />
+      <Filter lightTheme={props.lightTheme} filter={filter} filterTasks={filterTasks} />
     </Container>
   )
 }
