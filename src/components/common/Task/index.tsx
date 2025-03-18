@@ -4,6 +4,7 @@ import iconCheck from "../../../assets/images/icon-check.svg"
 import iconCross from "../../../assets/images/icon-cross.svg"
 import { useState } from "react"
 import TaskForm from "../TaskForm"
+import { Draggable } from "@hello-pangea/dnd"
 
 export interface TaskProps {
     task: TaskFields
@@ -13,6 +14,7 @@ export interface TaskProps {
     updateTask: Function
     editing: boolean
     setEditing: Function
+    index: number
 }
 
 const Task = (props: TaskProps) => {
@@ -39,33 +41,41 @@ const Task = (props: TaskProps) => {
                     + (props.lightTheme ? ` ${styles.light}` : "")}>
                 <TaskForm lightTheme={props.lightTheme} onSubmit={handleUpdate} task={props.task.task} completed={props.task.completed} />
             </li>
-            : <li
-                className={styles.task
-                    + (props.task.completed ? ` ${styles.completed}` : "")
-                    + (props.lightTheme ? ` ${styles.light}` : "")}>
-                <div className={styles.task__container}>
-                    <label
-                        className={`complete${props.lightTheme ? " light" : ""}`}
-                        title={props.task.completed ? "Set as non-complete" : "Complete this task"}>
-                        <input
-                            type="checkbox"
-                            name="new-complete"
-                            checked={props.task.completed}
-                            onChange={() => props.completeTask(props.task.id)} />
 
-                        <img src={iconCheck} alt="Complete" />
-                    </label>
+            : <Draggable draggableId={`draggable-task-${props.task.id}`} index={props.index}>
+                {(provided) => (
+                    <li
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                        className={styles.task
+                            + (props.task.completed ? ` ${styles.completed}` : "")
+                            + (props.lightTheme ? ` ${styles.light}` : "")}>
+                        <div className={styles.task__container}>
+                            <label
+                                className={`complete${props.lightTheme ? " light" : ""}`}
+                                title={props.task.completed ? "Set as non-complete" : "Complete this task"}>
+                                <input
+                                    type="checkbox"
+                                    name="new-complete"
+                                    checked={props.task.completed}
+                                    onChange={() => props.completeTask(props.task.id)} />
 
-                    <p
-                        className={styles.task__content}
-                        title="Double click to edit task"
-                        onDoubleClick={handleDoubleClick}>{props.task.task}</p>
+                                <img src={iconCheck} alt="Complete" />
+                            </label>
 
-                    <button className={styles.task__delete} title="Delete this task" onClick={() => props.deleteTask(props.task.id)}>
-                        <img src={iconCross} alt="Delete" />
-                    </button>
-                </div>
-            </li>
+                            <p
+                                className={styles.task__content}
+                                title="Double click to edit task"
+                                onDoubleClick={handleDoubleClick}>{props.task.task}</p>
+
+                            <button className={styles.task__delete} title="Delete this task" onClick={() => props.deleteTask(props.task.id)}>
+                                <img src={iconCross} alt="Delete" />
+                            </button>
+                        </div>
+                    </li>
+                )}
+            </Draggable>
     )
 }
 
