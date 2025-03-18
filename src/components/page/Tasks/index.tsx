@@ -76,6 +76,12 @@ const Tasks = (props: TasksProps) => {
     setTasksLeft(sanitizedTasks.filter(task => !task.completed).length)
   }
 
+  const clearCompleted = () => {
+    const sanitizedTasks = tasks.filter(task => !task.completed)
+    setTasks(sanitizedTasks)
+    setTasksLeft(sanitizedTasks.filter(task => !task.completed).length)
+  }
+
   return (
     <Container>
       <section className={styles.tasks__form + (props.lightTheme ? ` ${styles.light}` : "")}>
@@ -97,7 +103,7 @@ const Tasks = (props: TasksProps) => {
         </ul>
       </section>
 
-      <Actions lightTheme={props.lightTheme} tasksLeft={tasksLeft} />
+      <Actions lightTheme={props.lightTheme} tasksLeft={tasksLeft} clearCompleted={clearCompleted} />
       <Filter lightTheme={props.lightTheme} />
     </Container>
   )

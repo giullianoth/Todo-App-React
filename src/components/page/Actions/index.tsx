@@ -3,6 +3,7 @@ import styles from "./Actions.module.css"
 export interface ActionsProps {
   lightTheme: boolean
   tasksLeft: number
+  clearCompleted: Function
 }
 
 const Actions = (props: ActionsProps) => {
@@ -13,7 +14,7 @@ const Actions = (props: ActionsProps) => {
       </div>
 
       <div className={styles.actions__clear}>
-        <button className={styles.actions__clear}>Clear Completed</button>
+        <button className={styles.actions__clear} onClick={() => props.clearCompleted()}>Clear Completed</button>
       </div>
     </section>
   )
