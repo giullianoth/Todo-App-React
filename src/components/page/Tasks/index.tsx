@@ -36,6 +36,7 @@ const Tasks = (props: TasksProps) => {
   ])  
   const [tasksLeft, setTasksLeft] = useState(0)
   const [filter, setFilter] = useState("all")
+  const [editing, setEditing] = useState(false)
 
   useEffect(() => {
     setTasksLeft(tasks.filter(task => !task.completed).length)
@@ -89,6 +90,21 @@ const Tasks = (props: TasksProps) => {
   }
 
   const filterTasks = (term: string) => setFilter(term)
+  
+  const includeUpdateForm = (value: boolean) => setEditing(value)
+
+  const updateTask = (taskId: number, task: string, completed: boolean) => {
+    const updatedTasks = tasks.map(oldTask => {
+      if (taskId === oldTask.id) {
+        oldTask.task = task
+        oldTask.completed = completed
+      }
+      return oldTask
+    })
+
+    setTasks(updatedTasks)
+    setTasksLeft(updatedTasks.filter(task => !task.completed).length)
+  }
 
   return (
     <Container>
@@ -105,7 +121,10 @@ const Tasks = (props: TasksProps) => {
                 task={task}
                 lightTheme={props.lightTheme}
                 completeTask={completeTask}
-                deleteTask={deleteTask} />
+                deleteTask={deleteTask}
+                editing={editing}
+                setEditing={includeUpdateForm}
+                updateTask={updateTask} />
             ))
             : <li className={styles.tasks__empty}>Your todo will appear here</li>}
         </ul>

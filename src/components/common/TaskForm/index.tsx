@@ -1,16 +1,24 @@
 import styles from "./TaskForm.module.css"
 import iconCheck from "../../../assets/images/icon-check.svg"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export interface TaskFormProps {
   lightTheme: boolean
   onSubmit: Function
+  task?: string
+  completed?: boolean
 }
 
 const TaskForm = (props: TaskFormProps) => {
-  const [newTask, setnewTask] = useState("")
-  const [newCompleted, setNewCompleted] = useState(false)
+  const [newTask, setnewTask] = useState(props.task ?? "")
+  const [newCompleted, setNewCompleted] = useState(props.completed ?? false)
   const inputRef = useRef<HTMLInputElement | null>(null)
+
+  useEffect(() => {
+    if (props.task) {
+      inputRef?.current?.focus()
+    }
+  }, [])
 
   const changeFormData = (event: { target: { name: string, value: string, checked: boolean } }) => {
     if (event.target.name === "new-complete") {
