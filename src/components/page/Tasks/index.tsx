@@ -18,23 +18,14 @@ export interface TaskFields {
 }
 
 const Tasks = (props: TasksProps) => {
-  const [tasks, setTasks] = useState<TaskFields[]>([
-    {
-      id: 1,
-      task: "Complete online JavaScript course",
-      completed: true
-    },
-    {
-      id: 2,
-      task: "Jog around the park 3x",
-      completed: false
-    },
-    {
-      id: 3,
-      task: "10 minutes meditation",
-      completed: false
-    },
-  ])
+  const storageTasks = (data: TaskFields[]) => localStorage.setItem("todo", JSON.stringify(data))
+
+  const getStoragedTasks = () => {
+    const data = localStorage.getItem("todo")
+    return data ? JSON.parse(data) : []
+  }
+
+  const [tasks, setTasks] = useState<TaskFields[]>(getStoragedTasks() ?? [])
   const [tasksLeft, setTasksLeft] = useState(0)
   const [filter, setFilter] = useState("all")
   const [editing, setEditing] = useState(false)
@@ -64,6 +55,7 @@ const Tasks = (props: TasksProps) => {
 
     setTasks(newTasks)
     setTasksLeft(newTasks.filter(task => !task.completed).length)
+    storageTasks(newTasks)
   }
 
   const completeTask = (taskId: number) => {
@@ -76,18 +68,21 @@ const Tasks = (props: TasksProps) => {
 
     setTasks(updatedTasks)
     setTasksLeft(updatedTasks.filter(task => !task.completed).length)
+    storageTasks(updatedTasks)
   }
 
   const deleteTask = (taskId: number) => {
     const sanitizedTasks = tasks.filter(task => task.id !== taskId)
     setTasks(sanitizedTasks)
     setTasksLeft(sanitizedTasks.filter(task => !task.completed).length)
+    storageTasks(sanitizedTasks)
   }
 
   const clearCompleted = () => {
     const sanitizedTasks = tasks.filter(task => !task.completed)
     setTasks(sanitizedTasks)
     setTasksLeft(sanitizedTasks.filter(task => !task.completed).length)
+    storageTasks(sanitizedTasks)
   }
 
   const filterTasks = (term: string) => setFilter(term)
@@ -105,6 +100,7 @@ const Tasks = (props: TasksProps) => {
 
     setTasks(updatedTasks)
     setTasksLeft(updatedTasks.filter(task => !task.completed).length)
+    storageTasks(updatedTasks)
   }
 
   const reorderTasks = (result: any) => {
@@ -117,6 +113,7 @@ const Tasks = (props: TasksProps) => {
     reorderedTasks.splice(result.destination.index, 0, dragged)
 
     setTasks(reorderedTasks)
+    storageTasks(reorderedTasks)
   }
 
   return (
