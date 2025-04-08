@@ -1,6 +1,6 @@
 import styles from "./TaskForm.module.css"
 import iconCheck from "../../../assets/images/icon-check.svg"
-import { useEffect, useRef, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
 
 export interface TaskFormProps {
   lightTheme: boolean
@@ -20,7 +20,7 @@ const TaskForm = (props: TaskFormProps) => {
     }
   }, [])
 
-  const changeFormData = (event: { target: { name: string, value: string, checked: boolean } }) => {
+  const changeFormData = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === "new-complete") {
       setNewCompleted(event.target.checked)
     }
@@ -32,7 +32,7 @@ const TaskForm = (props: TaskFormProps) => {
     inputRef?.current?.focus()
   }
 
-  const handleSubmit = (event: { preventDefault: Function }) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     props.onSubmit(newTask, newCompleted)
 
